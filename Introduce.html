@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BagsNMore - Cửa hàng ví, balo, túi xách chính hãng</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800&family=Poppins:ital,wght@1,700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --primary-navy: #003366;
+            --secondary-navy: #00264d;
+            --dark-navy: #001a33;
+            --accent-gold: #d4af37;
+            --light-gray: #f8f9fa;
+            --dark-gray: #343a40;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        /* Custom Header Styles */
+        .navbar-brand {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 1.8rem;
+            letter-spacing: -1px;
+        }
+
+        .navbar-brand span {
+            font-family: 'Poppins', sans-serif;
+            font-style: italic;
+            font-weight: 700;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('./image/Setup-2_7b03d13d-565b-4433-b04f-3d32c4dc99fc_2048x.webp') center/cover no-repeat;
+            padding: 200px 0;
+            color: white;
+        }
+
+        /* Cards */
+        .card {
+            transition: transform 0.3s, box-shadow 0.3s;
+            margin-bottom: 20px;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-img-container {
+            height: 400px;
+            overflow: hidden;
+        }
+
+        .card-img-container img {
+            height: 300px;
+            overflow: hidden;
+        }
+
+        .card-img-top {
+            height: 300px;
+            object-fit: cover;
+        }
+
+        /* Product cards */
+        .product-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            z-index: 1;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-navy);
+            border-color: var(--primary-navy);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--dark-navy);
+            border-color: var(--dark-navy);
+        }
+
+        .section-title {
+            position: relative;
+            margin-bottom: 40px;
+            font-weight: 700;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background-color: var(--accent-gold);
+            margin-top: 15px;
+        }
+
+        /* Features */
+        .feature-icon {
+            background-color: var(--primary-navy);
+            color: white;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 32px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark-gray);
+            color: white;
+            padding: 60px 0 20px;
+        }
+
+        .footer-heading {
+            position: relative;
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+
+        .footer-heading::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--accent-gold);
+        }
+
+        .footer-links {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: white;
+            text-decoration: none;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            margin-right: 10px;
+            color: white;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        .social-links a:hover {
+            background-color: var(--accent-gold);
+        }
+
+        .old-price {
+            text-decoration: line-through;
+            color: #6c757d;
+            font-size: 0.9rem;
+        }
+
+        .current-price {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--primary-navy);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top" style="background-color: var(--primary-navy);">
+        <div class="container">
+            <a class="navbar-brand" href="/">Bags<span>NMore</span></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/">Trang chủ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/product.html">Sản phẩm</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Introduce.html">Giới thiệu</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Contact.html">Liên hệ</a>
+                    </li>
+                </ul>
+                <div class="d-flex align-items-center">
+                    <a href="/Login.html" class="text-white me-3">Đăng nhập</a>
+                    <a href="/Register.html" class="text-white me-3">Đăng ký</a>
+                    <a href="javascript:void(0)" id="cart-icon" class="text-white position-relative me-3">
+                        <i class="fas fa-shopping-cart fa-lg"></i>
+                        <span id="cart-count"
+                            class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                            0
+                        </span>
+                    </a>
+
+                    <!-- POPUP GIỎ HÀNG -->
+                    <div id="cart-popup"
+                        style="display: none; position: absolute; top: 40px; right: 0; background: white; border: 1px solid #ccc; padding: 15px; width: 300px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); z-index: 1000;">
+                        <h5>🛒 Giỏ hàng của bạn</h5>
+                        <ul id="cart-items" style="list-style: none; padding-left: 0; margin-bottom: 10px;"></ul>
+                        <a href="/Cart.html" class="btn btn-primary w-100 mt-2" style="text-decoration: none;">Chi
+                            tiết</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container text-center">
+            <h1 class="display-4 fw-bold mb-4">PHỤ KIỆN THỜI TRANG CAO CẤP</h1>
+            <p class="lead mb-4">Ví, balo, túi xách chính hãng với thiết kế hiện đại và chất liệu cao cấp</p>
+            <a href="#" class="btn btn-primary btn-lg px-4">Khám phá ngay</a>
+        </div>
+    </section>
+
+    <!-- Categories -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="section-title text-center">Danh mục sản phẩm</h2>
+            <div class="row">
+                <div class="col-md-6 col-lg-3">
+                    <div class="card h-100">
+                        <div class="card-img-container">
+                            <img src="./image/vi1.jpg" class="card-img-top" alt="Ví">
+                        </div>
+                        <div class="card-body text-center">
+                            <h3 class="card-title h5">Ví Cao Cấp</h3>
+                            <a href="#" class="btn btn-primary mt-2">Xem thêm</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="card h-100">
+                        <div class="card-img-container">
+                            <img src="./image/SubwayReu-1_950x.webp" class="card-img-top" alt="Balo">
+                        </div>
+                        <div class="card-body text-center">
+                            <h3 class="card-title h5">Balo Thời Trang</h3>
+                            <a href="#" class="btn btn-primary mt-2">Xem thêm</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="card h-100">
+                        <div class="card-img-container">
+                            <img src="./image/tui1.webp" class="card-img-top" alt="Túi xách">
+                        </div>
+                        <div class="card-body text-center">
+                            <h3 class="card-title h5">Túi Xách</h3>
+                            <a href="#" class="btn btn-primary mt-2">Xem thêm</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="card h-100">
+                        <div class="card-img-container">
+                            <img src="./image/phukien.webp" class="card-img-top" alt="Phụ kiện">
+                        </div>
+                        <div class="card-body text-center">
+                            <h3 class="card-title h5">Phụ Kiện Khác</h3>
+                            <a href="#" class="btn btn-primary mt-2">Xem thêm</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="section-title text-center">Tại sao chọn BagsNMore?</h2>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="text-center mb-4">
+                        <div class="feature-icon">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <h3 class="h4">Sản phẩm chính hãng</h3>
+                        <p>Chúng tôi cam kết 100% sản phẩm chính hãng, chất lượng cao và có bảo hành từ nhà sản xuất.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="text-center mb-4">
+                        <div class="feature-icon">
+                            <i class="fas fa-truck"></i>
+                        </div>
+                        <h3 class="h4">Giao hàng nhanh chóng</h3>
+                        <p>Giao hàng toàn quốc chỉ trong 1-3 ngày làm việc với nhiều hình thức thanh toán linh hoạt.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="text-center mb-4">
+                        <div class="feature-icon">
+                            <i class="fas fa-headset"></i>
+                        </div>
+                        <h3 class="h4">Hỗ trợ 24/7</h3>
+                        <p>Đội ngũ tư vấn viên chuyên nghiệp luôn sẵn sàng hỗ trợ bạn mọi lúc, mọi nơi, mọi vấn đề.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <h2 class="section-title text-center">Khách hàng nói gì về chúng tôi</h2>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <div class="text-warning mb-3">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <p class="card-text fst-italic">"Tôi đã mua chiếc ví da từ BagsNMore và rất hài lòng về chất
+                                lượng. Sản phẩm đúng như mô tả và dịch vụ giao hàng rất nhanh."</p>
+                            <p class="fw-bold mb-0">Nguyễn Văn A</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <div class="text-warning mb-3">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <p class="card-text fst-italic">"Balo du lịch tôi mua từ shop chống nước tuyệt vời, đựng
+                                được nhiều đồ và rất bền. Sẽ tiếp tục ủng hộ shop trong tương lai."</p>
+                            <p class="fw-bold mb-0">Trần Thị B</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <div class="text-warning mb-3">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <p class="card-text fst-italic">"Đội ngũ tư vấn rất nhiệt tình và am hiểu về sản phẩm. Họ đã
+                                giúp tôi chọn được chiếc túi xách phù hợp với nhu cầu của mình."</p>
+                            <p class="fw-bold mb-0">Lê Văn C</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="py-5" style="background-color: var(--primary-navy); color: white;">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-8 text-center">
+                    <h2 class="mb-3">Đăng ký nhận thông tin</h2>
+                    <p class="mb-4">Đăng ký để nhận thông tin về sản phẩm mới, khuyến mãi và các sự kiện đặc biệt.</p>
+                    <form class="row g-3 justify-content-center">
+                        <div class="col-md-8">
+                            <input type="email" class="form-control form-control-lg"
+                                placeholder="Địa chỉ email của bạn">
+                        </div>
+                        <div class="col-md-auto">
+                            <button type="submit" class="btn btn-lg"
+                                style="background-color: var(--accent-gold); color: var(--dark-navy);">Đăng ký</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                    <h3 class="footer-heading">BagsNMore</h3>
+                    <p>Cung cấp các sản phẩm ví, balo, túi xách chất lượng cao với thiết kế hiện đại và chất liệu bền
+                        đẹp. Đảm bảo mang đến trải nghiệm mua sắm tốt nhất cho khách hàng.</p>
+                    <div class="social-links mt-3">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                    <h3 class="footer-heading">Liên kết nhanh</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Trang chủ</a></li>
+                        <li><a href="#">Sản phẩm</a></li>
+                        <li><a href="#">Giới thiệu</a></li>
+                        <li><a href="#">Liên hệ</a></li>
+                        <li><a href="#">Chính sách bảo mật</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                    <h3 class="footer-heading">Danh mục sản phẩm</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Ví nam</a></li>
+                        <li><a href="#">Ví nữ</a></li>
+                        <li><a href="#">Balo du lịch</a></li>
+                        <li><a href="#">Balo laptop</a></li>
+                        <li><a href="#">Túi xách thời trang</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                    <h3 class="footer-heading">Liên hệ</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-map-marker-alt me-2"></i> 123 Đường Khương Trung, Quận Thanh Xuân, TP Hà
+                            Nội</li>
+                        <li><i class="fas fa-phone me-2"></i> 0123.456.789</li>
+                        <li><i class="fas fa-envelope me-2"></i> info@bagsnmore.vn</li>
+                        <li><i class="fas fa-clock me-2"></i> T2-T7, 8:00 - 20:00</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="text-center mt-4 pt-4 border-top border-secondary">
+                <p>&copy; 2025 BagsNMore. Tất cả quyền được bảo lưu.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- HTML2Canvas -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script>
+        const cartCountBadge = document.getElementById('cart-count');
+        const cartPopup = document.getElementById('cart-popup');
+        const cartIcon = document.getElementById('cart-icon');
+        const cartItems = document.getElementById('cart-items');
+
+        // Cập nhật giao diện popup từ localStorage
+        function updateCartUI(cart) {
+            cartItems.innerHTML = "";
+
+            if (cart.length === 0) {
+                cartItems.innerHTML = "<li class='text-muted'>Chưa có sản phẩm nào trong giỏ hàng.</li>";
+                return;
+            }
+
+            cart.forEach(item => {
+                const li = document.createElement('li');
+                li.innerHTML = `
+              <div class="d-flex justify-content-between align-items-center mb-2">
+                <div>
+                  <strong>${item.name}</strong><br>
+                  <small>${item.price} x ${item.quantity}</small>
+                </div>
+                <span>${(parseInt(item.price.replace(/\D/g, '')) * item.quantity).toLocaleString('vi-VN')}₫</span>
+              </div>
+            `;
+                cartItems.appendChild(li);
+            });
+        }
+
+        // Cập nhật badge số lượng
+        function updateCartBadge(cart) {
+            const total = cart.reduce((sum, item) => sum + item.quantity, 0);
+            cartCountBadge.textContent = total;
+        }
+
+        // Khi click "Thêm vào giỏ"
+        document.querySelectorAll('.add-to-cart').forEach(button => {
+            button.addEventListener('click', function () {
+                const card = this.closest('.card');
+                const productName = card.querySelector('.card-title').textContent;
+                const productPrice = card.querySelector('.current-price').textContent;
+                const productImage = card.querySelector('img').getAttribute('src');
+
+                const newItem = { name: productName, price: productPrice, image: productImage, quantity: 1 };
+
+                let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+                const existingItem = cart.find(item => item.name === newItem.name);
+                if (existingItem) {
+                    existingItem.quantity += 1;
+                } else {
+                    cart.push(newItem);
+                }
+
+                localStorage.setItem('cart', JSON.stringify(cart));
+
+                updateCartUI(cart);
+                updateCartBadge(cart);
+            });
+        });
+
+        // Khi bấm vào icon giỏ hàng
+        cartIcon.addEventListener('click', function () {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            updateCartUI(cart);
+            cartPopup.style.display = (cartPopup.style.display === 'none') ? 'block' : 'none';
+        });
+
+        // Ẩn popup nếu click ra ngoài
+        document.addEventListener('click', function (e) {
+            if (!cartPopup.contains(e.target) && !cartIcon.contains(e.target)) {
+                cartPopup.style.display = 'none';
+            }
+        });
+
+        // Cập nhật giỏ hàng khi load lại trang
+        document.addEventListener('DOMContentLoaded', function () {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            updateCartBadge(cart);
+        });
+    </script>
+</body>
+
+</html>

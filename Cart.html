@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BagsNMore - Cửa hàng ví, balo, túi xách chính hãng</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800&family=Poppins:ital,wght@1,700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --primary-navy: #003366;
+            --secondary-navy: #00264d;
+            --dark-navy: #001a33;
+            --accent-gold: #d4af37;
+            --light-gray: #f8f9fa;
+            --dark-gray: #343a40;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        /* Custom Header Styles */
+        .navbar-brand {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 1.8rem;
+            letter-spacing: -1px;
+        }
+
+        .navbar-brand span {
+            font-family: 'Poppins', sans-serif;
+            font-style: italic;
+            font-weight: 700;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('./image/Setup-2_7b03d13d-565b-4433-b04f-3d32c4dc99fc_2048x.webp') center/cover no-repeat;
+            padding: 200px 0;
+            color: white;
+        }
+
+        /* Cards */
+        .card {
+            transition: transform 0.3s, box-shadow 0.3s;
+            margin-bottom: 20px;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-img-container {
+            height: 400px;
+            overflow: hidden;
+        }
+
+        .card-img-container img {
+            height: 300px;
+            overflow: hidden;
+        }
+
+        .card-img-top {
+            height: 300px;
+            object-fit: cover;
+        }
+
+        /* Product cards */
+        .product-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            z-index: 1;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-navy);
+            border-color: var(--primary-navy);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--dark-navy);
+            border-color: var(--dark-navy);
+        }
+
+        .section-title {
+            position: relative;
+            margin-bottom: 40px;
+            font-weight: 700;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background-color: var(--accent-gold);
+            margin-top: 15px;
+        }
+
+        /* Features */
+        .feature-icon {
+            background-color: var(--primary-navy);
+            color: white;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 32px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark-gray);
+            color: white;
+            padding: 60px 0 20px;
+        }
+
+        .footer-heading {
+            position: relative;
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+
+        .footer-heading::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--accent-gold);
+        }
+
+        .footer-links {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: white;
+            text-decoration: none;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            margin-right: 10px;
+            color: white;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        .social-links a:hover {
+            background-color: var(--accent-gold);
+        }
+
+        .old-price {
+            text-decoration: line-through;
+            color: #6c757d;
+            font-size: 0.9rem;
+        }
+
+        .current-price {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--primary-navy);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top" style="background-color: var(--primary-navy);">
+        <div class="container">
+            <a class="navbar-brand" href="/">Bags<span>NMore</span></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/">Trang chủ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/product.html">Sản phẩm</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Introduce.html">Giới thiệu</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Contact.html">Liên hệ</a>
+                    </li>
+                </ul>
+                <div class="d-flex align-items-center">
+                    <a href="/Login.html" class="text-white me-3">Đăng nhập</a>
+                    <a href="/Register.html" class="text-white me-3">Đăng ký</a>
+                    <a href="#" class="text-white position-relative me-3">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span id="cart-count"
+                            class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                            0
+                        </span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <section class="py-5">
+        <div class="container">
+            <h2 class="mb-4 text-center">Giỏ hàng của bạn</h2>
+
+            <div class="table-responsive">
+                <table class="table align-middle table-bordered">
+                    <thead class="table-dark text-center">
+                        <tr>
+                            <th>Ảnh</th>
+                            <th>Sản phẩm</th>
+                            <th>Đơn giá</th>
+                            <th>Số lượng</th>
+                            <th>Thành tiền</th>
+                        </tr>
+                    </thead>
+                    <tbody id="cart-body">
+                        <!-- sẽ render bằng JS -->
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="text-end mt-4">
+                <h4>Tổng cộng: <span class="text-primary" id="total-amount">0₫</span></h4>
+                <a href="Payment.html" class="btn btn-success btn-lg mt-3">Thanh toán</a>
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- Newsletter -->
+    <section class="py-5" style="background-color: var(--primary-navy); color: white;">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-8 text-center">
+                    <h2 class="mb-3">Đăng ký nhận thông tin</h2>
+                    <p class="mb-4">Đăng ký để nhận thông tin về sản phẩm mới, khuyến mãi và các sự kiện đặc biệt.</p>
+                    <form class="row g-3 justify-content-center">
+                        <div class="col-md-8">
+                            <input type="email" class="form-control form-control-lg"
+                                placeholder="Địa chỉ email của bạn">
+                        </div>
+                        <div class="col-md-auto">
+                            <button type="submit" class="btn btn-lg"
+                                style="background-color: var(--accent-gold); color: var(--dark-navy);">Đăng ký</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                    <h3 class="footer-heading">BagsNMore</h3>
+                    <p>Cung cấp các sản phẩm ví, balo, túi xách chất lượng cao với thiết kế hiện đại và chất liệu bền
+                        đẹp. Đảm bảo mang đến trải nghiệm mua sắm tốt nhất cho khách hàng.</p>
+                    <div class="social-links mt-3">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                    <h3 class="footer-heading">Liên kết nhanh</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Trang chủ</a></li>
+                        <li><a href="#">Sản phẩm</a></li>
+                        <li><a href="#">Giới thiệu</a></li>
+                        <li><a href="#">Liên hệ</a></li>
+                        <li><a href="#">Chính sách bảo mật</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                    <h3 class="footer-heading">Danh mục sản phẩm</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Ví nam</a></li>
+                        <li><a href="#">Ví nữ</a></li>
+                        <li><a href="#">Balo du lịch</a></li>
+                        <li><a href="#">Balo laptop</a></li>
+                        <li><a href="#">Túi xách thời trang</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                    <h3 class="footer-heading">Liên hệ</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-map-marker-alt me-2"></i> 123 Đường Khương Trung, Quận Thanh Xuân, TP Hà
+                            Nội</li>
+                        <li><i class="fas fa-phone me-2"></i> 0123.456.789</li>
+                        <li><i class="fas fa-envelope me-2"></i> info@bagsnmore.vn</li>
+                        <li><i class="fas fa-clock me-2"></i> T2-T7, 8:00 - 20:00</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="text-center mt-4 pt-4 border-top border-secondary">
+                <p>&copy; 2025 BagsNMore. Tất cả quyền được bảo lưu.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- HTML2Canvas -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const cartBody = document.getElementById('cart-body');
+            const totalAmount = document.getElementById('total-amount');
+            let total = 0;
+
+            cart.forEach(item => {
+                const price = parseInt(item.price.replace(/\D/g, '')); // bỏ ký tự ₫
+                const subtotal = price * item.quantity;
+                total += subtotal;
+
+                const row = document.createElement('tr');
+                row.innerHTML = `
+              <td class="text-center"><img src="${item.image}" width="80"></td>
+              <td>${item.name}</td>
+              <td>${item.price}</td>
+              <td>${item.quantity}</td>
+              <td>${subtotal.toLocaleString('vi-VN')}₫</td>
+            `;
+                cartBody.appendChild(row);
+            });
+
+            totalAmount.textContent = total.toLocaleString('vi-VN') + '₫';
+        });
+    </script>
+
+</body>
+
+</html>
